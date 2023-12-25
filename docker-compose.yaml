@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  gateway:
+    image: gateway:latest
+    container_name: gateway
+    hostname: gateway
+    restart: always
+    ports:
+      - 8080:8080      
+  appserver:
+    image: appserver:latest
+    container_name: appserver
+    hostname: appserver
+    restart: always
+    ports:
+      - 8082:8082
+  data:
+    image: data:latest
+    container_name: data
+    hostname: data
+    restart: always
+    ports:
+      - 8083:8083
+    

@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  db:
+    #    image: postgres:15.4-alpine
+    image: postgres:10.6
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: template-service
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  kafka:
+    image: landoop/fast-data-dev:latest
+    #hostname: kafka.local
+    #container_name: kafka-local
+    restart: always
+    expose:
+      - "2181" #
+      - "9092" #
+    ports:
+      - 2181:2181
+      - 9092:9092
+      - 3030:3030
+      - 8081-8082:8081-8082
+      - 9581-9585:9581-9585
+
+    environment:
+      # ADV_HOST: 127.0.0.1
+      ADV_HOST: localhost
+      RUNTESTS: 0
+      # FORWARDLOGS: 0
+      # DISABLE_JMX: 1
+      # SAMPLEDATA: 0
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  backend:
+    driver: bridge

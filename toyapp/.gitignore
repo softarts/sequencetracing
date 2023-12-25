@@ -1,0 +1,18 @@
+*.class
+lib/adapter.jar
+
+# Package Files #
+*.war
+*.ear
+
+# Idea files
+.idea
+out
+.DS_Store
+target/
+plantuml4idea.zip
+
+.gradle
+.idea
+.qodana
+build

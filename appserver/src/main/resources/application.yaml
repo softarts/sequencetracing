@@ -1,0 +1,49 @@
+---
+base.url: http://localhost:8081
+environment: ${ENVIRONMENT:local}
+service.name: template-service
+server:
+  port: 8080
+
+spring:
+  main.banner-mode: "off"
+  profiles.active: ${PROFILES_ACTIVE:message-debug-logging}
+  datasource:
+    url: ${POSTGRES_DB:jdbc:postgresql://localhost:5432/template-service}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_USER_PASSWORD:postgres}
+
+
+spring.jpa:
+  show_sql: false
+  open-in-view: false # TODO
+  generate-ddl: false
+  properties.hibernate.temp.use_jdbc_metadata_defaults: false
+  database-platform: org.hibernate.dialect.PostgreSQLDialect
+  hibernate.ddl-auto: validate
+  #hibernate.ddl-auto: create-drop
+
+
+# kafka setting
+tower:
+  messaging:
+    auth: ${KAFKA_AUTH:false}
+    username: ${KAFKA_USER:}
+    password: ${KAFKA_PASSWORD:}
+    transaction-id-prefix: demo-transaction-
+    ssl: ${KAFKA_SSL:false}
+    schema.registry.url: ${SCHEMA_REGISTRY_URL:http://localhost:8081}
+    boostrap-servers: ${KAFKA_CONNECTION:localhost:9092}
+    producer-max-age: 7d
+
+    event:
+      testcommand1:
+        topic: kafka-demo.testcommand1.event
+        consumer-group-id: kafka-demo
+        listener-count: 1
+
+
+
+
+
+
