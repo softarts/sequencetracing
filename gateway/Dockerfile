@@ -1,9 +1,8 @@
 FROM azul/zulu-openjdk:17.0.7-17.42.19-jre
 
 COPY build/libs/*SNAPSHOT.jar /app/app.jar
-COPY ../opentelemetry-javaagent.jar /app/opentelemetry-javaagent.jar
 
-ENV JAVA_TOOL_OPTIONS="-javaagent:/app/opentelemetry-javaagent.jar"
+ENV JAVA_TOOL_OPTIONS="-javaagent:/app/lib/opentelemetry-javaagent.jar"
 ENV OTEL_TRACES_EXPORTER=logging
 ENV OTEL_METRICS_EXPORTER=logging
 ENV OTEL_LOGS_EXPORTER=logging

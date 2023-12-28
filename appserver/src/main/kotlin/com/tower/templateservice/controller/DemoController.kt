@@ -9,27 +9,28 @@ import org.springframework.web.client.RestTemplate
 class DemoController {
     @GetMapping("/test1")
     fun test1(): String  {
-        val url = "http://data:8083/test1"
+        val url = "http://dataserver:8083/test1"
         val restTemplate = RestTemplate()
         val responseEntity: ResponseEntity<String> = restTemplate.getForEntity(url, String::class.java)
         val resp: String? = responseEntity.body
         println("test1 resp: $resp")
-        return "app test1$resp"
+        return "appserver test1$resp"
     }
 
     @GetMapping("/test2")
     fun test2(): String  {
-        throw RuntimeException("app test2")
+        throw RuntimeException("appserver test2")
     }
 
 
     @GetMapping("/test3")
     fun test3(): String  {
-        val url = "http://data:8083/test3"
+        val url = "http://dataserver:8083/test3"
         val restTemplate = RestTemplate()
         val responseEntity: ResponseEntity<String> = restTemplate.getForEntity(url, String::class.java)
         val resp: String? = responseEntity.body
-        println("test1 resp: $resp")
+        println("test3 resp: $resp")
+        return "appserver test3$resp"
     }
 }
 

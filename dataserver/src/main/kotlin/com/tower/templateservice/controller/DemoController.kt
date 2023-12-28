@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.RestController
 class DemoController {
     @GetMapping("/test1")
     fun test1(): String  {
-        return "data test1"
+        return "dataserver test1"
     }
 
     @GetMapping("/test2")
     fun test2(): String  {
-        throw RuntimeException("data test2")
+        throw RuntimeException("dataserver test2")
     }
 
     @GetMapping("/test3")
     fun test3(): String  {
-        throw RuntimeException("data test3")
+        throw RuntimeException("dataserver test3")
     }
 }
 
