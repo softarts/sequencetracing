@@ -7,7 +7,9 @@ services:
     hostname: gateway
     restart: always
     ports:
-      - 8080:8080      
+      - 8080:8080
+    volumes:
+      - ./lib:/app/lib
   appserver:
     image: appserver:latest
     container_name: appserver
@@ -15,6 +17,8 @@ services:
     restart: always
     ports:
       - 8082:8082
+    volumes:
+      - ./lib:/app/lib      
   data:
     image: data:latest
     container_name: data
@@ -22,4 +26,6 @@ services:
     restart: always
     ports:
       - 8083:8083
+    volumes:
+      - ./lib:/app/lib
     

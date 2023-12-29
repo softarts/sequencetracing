@@ -1,1 +1,1 @@
-rootProject.name = "plantuml4idea"
+rootProject.name = "sequencetracing"
