@@ -1,4 +1,5 @@
 @file:Suppress("HardCodedStringLiteral")
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.changelog.Changelog
 
 
@@ -45,7 +46,8 @@ dependencies {
         exclude(group = "commons-io", module = "commons-io")
         exclude(group = "commons-logging", module = "commons-logging")
     }
-
+    // docker client
+    implementation("com.github.docker-java:docker-java:3.3.4")
 
 }
 
@@ -155,5 +157,16 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
 //        channels = properties("pluginVersion").map { listOf(it.split('-').getOrElse(1) { "default" }.split('.').first()) }
+    }
+
+    test {
+        systemProperty("uml", System.getProperty("uml"))
+        systemProperty("output", System.getProperty("output"))
+        systemProperty("corrid", System.getProperty("corrid"))
+        systemProperty("corrHeader", System.getProperty("corrHeader"))
+        testLogging {
+            showStandardStreams = true
+            events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+        }
     }
 }

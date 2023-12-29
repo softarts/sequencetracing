@@ -19,10 +19,10 @@ services:
       - 8082:8082
     volumes:
       - ./lib:/app/lib      
-  data:
-    image: data:latest
-    container_name: data
-    hostname: data
+  dataserver:
+    image: dataserver:latest
+    container_name: dataserver
+    hostname: dataserver
     restart: always
     ports:
       - 8083:8083

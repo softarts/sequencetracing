@@ -1,0 +1,16 @@
+@startuml
+title Gateway flow
+participant gateway
+participant appserver
+participant dataserver
+gateway -> appserver: /test2
+note right
+url: v1/token/generate
+header: api-key
+param: card-no
+end note
+
+appserver -> dataserver: /test2
+dataserver -> appserver: /test2
+appserver -> gateway: /test2
+@enduml
